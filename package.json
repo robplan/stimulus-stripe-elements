@@ -1,0 +1,22 @@
+{
+  "name": "stimulus-stripe-elements",
+  "version": "1.0.0",
+  "description": "A StimulusJS controller to add Stripe.js and Elements to your page",
+  "main": "index.js",
+  "repository": "git@github.com:eelcoj/stimulus-stripe-elements.git",
+  "author": "eelco <eelco@needlesstosay.co>",
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "stimulus",
+    "stimulusjs",
+    "controller",
+    "stripe.js",
+    "stripe",
+    "elements"
+  ],
+  "dependencies": {
+    "stimulus": "^1.1.0"
+  }
+}
+
