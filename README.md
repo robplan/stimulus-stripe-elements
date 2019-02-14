@@ -25,7 +25,29 @@ Next, include the stripe.js script on your pages.
 
 ### HTML
 ```html
-<form  data-controller="stripe" data-target="stripe.form" data-action="stripe#submit" data-stripe-public-key="{{ stripe_public_key }}" action="" method="post">
+<form
+  data-controller="stripe"
+  data-target="stripe.form"
+  data-action="stripe#submit"
+  data-stripe-public-key="{stripe_public_key}"
+  data-stripe-style="
+    "base": {
+      "fontFamiliy": "system-ui",
+      "fontSize": "16px",
+      "color": "#3d4852",
+      "fontSmoothing": "antialiased",
+      "::placeholder": {
+        "color": "#CFD7DF"
+      },
+      "invalid": {
+        "color": "#e5424d",
+        ":focus": {
+          "color": "#303238"
+        }
+      }
+    }
+  "
+  action="" method="post">
   <div class="field">
     <label for="card-element">Credit or debit card</label>
     <div data-target="stripe.card" data-action="change->stripe#change" class="input">
@@ -36,9 +58,34 @@ Next, include the stripe.js script on your pages.
 </form>
 
 ```
-### Ruby on Rails
+### ERB
 ```rails
-<%= form_with(url: billing_url, local: true, data: { controller: "stripe", target: "stripe.form", action: "stripe#submit", stripe_public_key: Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :public_key) }) do |form| %>
+<%= form_with(
+  url: billing_url,
+  local: true,
+  data: {
+    controller: "stripe",
+    target: "stripe.form",
+    action: "stripe#submit",
+    stripe_public_key: Rails.application.credentials.dig(Rails.env.to_sym, :stripe, :public_key),
+    stripe_style: '{
+      "base": {
+        "fontFamiliy": "system-ui",
+        "fontSize": "16px",
+        "color": "#3d4852",
+        "fontSmoothing": "antialiased",
+        "::placeholder": {
+          "color": "#CFD7DF"
+        },
+        "invalid": {
+          "color": "#e5424d",
+          ":focus": {
+            "color": "#303238"
+          }
+        }
+      }
+    }'
+  }) do |form| %>
 
   <div class="field">
     <label for="card-element">Credit or debit card</label>
